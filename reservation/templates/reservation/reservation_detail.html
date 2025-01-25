@@ -1,0 +1,25 @@
+{% extends 'reservation/base.html'%}
+{% load my_tags %}
+{% block content %}
+<div class="full-screen custom-reservation-detail-bg">
+    <div class="card custom-margin custom-input custom-transparent-card">
+      <div class="card-header h3">
+        Дата бронирования: {{ reservation.date|date:"d.m.Y" }} {{ reservation.time|date:"H:i" }}
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Гость: {{ reservation.name}}</h4>
+        <h5 class="card-text">Номер телефона: {{ user.phone_number}}</h5>
+        <h5 class="card-text">Электронная почта: {{ user.email}}</h5>
+        <h5 class="card-text"> Номер стола: {{ reservation.table.number}}</h5>
+        <h5 class="card-text">Статус бронирования: {{ reservation.get_status_display}}</h5>
+        <h5 class="card-text">Cтатус стола: {{ reservation.table.get_status_display}}</h5>
+        {% if reservation.comments %}
+          <h5 class="card-text">Комментарии к бронированию: {{reservation.comments}}</h5>
+        {% else %}
+        {% endif %}
+        <a href="{% url 'reservation:reservation_list' %}" class="btn btn-dark">Назад</a>
+        <a href="{% url 'reservation:reservation_list' %}" class="btn btn-dark">Изменить</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

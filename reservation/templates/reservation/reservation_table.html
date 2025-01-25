@@ -1,0 +1,32 @@
+{% extends 'reservation/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="full-screen-bg">
+    <div class="custom-input">
+        <div class="container mt-5">
+            <h1 class="mb-4 custom-margin">Забронировать столик</h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <!-- Отображение формы для ввода данных резервирования -->
+                {{ form.as_p }}
+
+                <!-- Добавление выбора стола -->
+                <div class="mb-3">
+                    <label for="table">Выберите стол:</label>
+                    <select name="table" class="form-control" required>
+                        <option value="" disabled selected>-- Выберите стол --</option>
+                        {% for table in available_tables %}
+                            <option value="{{ table.id }}">{{ table.number }} - {{ table.status }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Забронировать</button>
+                <a href="{% url 'reservation:home' %}" class="btn btn-secondary">Отмена</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
