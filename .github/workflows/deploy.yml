@@ -71,7 +71,11 @@ jobs:
           envkey_REDIS_URL: ${{ secrets.REDIS_URL }}
           envkey_ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
           envkey_ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-          envkey_TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          envkey_EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
+          envkey_EMAIL_USE_TLS: ${{ secrets.EMAIL_USE_TLS }}
+          envkey_EMAIL_USE_SSL: ${{ secrets.EMAIL_USE_SSL }}
+          envkey_EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
+          envkey_EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD}}
           envkey_CELERY_BROKER_URL: ${{ secrets.CELERY_BROKER_URL }}
 
 
