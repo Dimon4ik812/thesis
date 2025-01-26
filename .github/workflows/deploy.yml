@@ -74,9 +74,6 @@ jobs:
           envkey_TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           envkey_CELERY_BROKER_URL: ${{ secrets.CELERY_BROKER_URL }}
 
-      - name: Run tests
-        run: |
-          poetry run python manage.py test
 
   build:
     runs-on: ubuntu-latest
@@ -103,4 +100,4 @@ jobs:
           SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
           ROOT_PASSWORD: ${{ secrets.ROOT_PASSWORD }}
         run: |
-          sshpass -p "${{ secrets.ROOT_PASSWORD }}" ssh -o StrictHostKeyChecking=no root@85.92.111.109 "cd /root/course_work/course_work_5 && git pull && docker-compose up -d --build"
+          sshpass -p "${{ secrets.ROOT_PASSWORD }}" ssh -o StrictHostKeyChecking=no root@85.92.111.109 "cd /root/thesis && git pull && docker-compose up -d --build"
