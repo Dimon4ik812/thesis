@@ -1,7 +1,6 @@
+from config.settings import ADMIN_EMAIL, ADMIN_PASSWORD
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
-
-from config.settings import ADMIN_EMAIL, ADMIN_PASSWORD
 
 
 class Command(BaseCommand):

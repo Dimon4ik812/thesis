@@ -17,8 +17,13 @@
           <h5 class="card-text">Комментарии к бронированию: {{reservation.comments}}</h5>
         {% else %}
         {% endif %}
+        {% if user.is_staff or can_view_all %}
         <a href="{% url 'reservation:reservation_list' %}" class="btn btn-dark">Назад</a>
-        <a href="{% url 'reservation:reservation_list' %}" class="btn btn-dark">Изменить</a>
+        <a href="{% url 'reservation:reservation_update' reservation.id %}" class="btn btn-dark">Изменить</a>
+        {% else %}
+        <a href="{% url 'user:user_profile' user.id %}" class="btn btn-dark">Назад</a>
+        <a href="{% url 'reservation:reservation_update' reservation.id %}" class="btn btn-dark">Изменить</a>
+        {% endif %}
       </div>
     </div>
   </div>

@@ -4,28 +4,33 @@
 <div class="full-screen-bg">
     <div class="custom-input">
         <div class="container mt-5">
-            <h1 class="mb-4 custom-margin">Забронировать столик</h1>
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.non_field_errors }}
+            {% if user.is_authenticated %}
+                <h1 class="mb-4 custom-margin">Забронировать стол</h1>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <!-- Отображение формы для ввода данных резервирования -->
+                    {{ form.as_p }}
+                    <!-- Добавление выбора стола -->
+                    <div class="mb-3">
+                        <label for="table">Выберите стол:</label>
+                        <select name="table" class="form-control" required>
+                            <option value="" disabled selected>-- Выберите стол --</option>
+                            {% for table in available_tables %}
+                                <option value="{{ table.id }}">{{ table.number }} - {{ table.get_status_display }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-                <!-- Отображение формы для ввода данных резервирования -->
-                {{ form.as_p }}
-
-                <!-- Добавление выбора стола -->
-                <div class="mb-3">
-                    <label for="table">Выберите стол:</label>
-                    <select name="table" class="form-control" required>
-                        <option value="" disabled selected>-- Выберите стол --</option>
-                        {% for table in available_tables %}
-                            <option value="{{ table.id }}">{{ table.number }} - {{ table.status }}</option>
-                        {% endfor %}
-                    </select>
+                    <button type="submit" class="btn btn-primary">Забронировать</button>
+                    <a href="{% url 'reservation:home' %}" class="btn btn-secondary">Отмена</a>
+                </form>
+            {% else %}
+                <div class="alert alert-info" role="alert">
+                    Для бронирования стола необходима регистрация.
                 </div>
-
-                <button type="submit" class="btn btn-primary">Забронировать</button>
-                <a href="{% url 'reservation:home' %}" class="btn btn-secondary">Отмена</a>
-            </form>
+                <a href="{% url 'user:register' %}" class="btn btn-primary">Зарегистрироваться</a>
+            {% endif %}
         </div>
     </div>
 </div>

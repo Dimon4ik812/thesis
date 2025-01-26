@@ -1,14 +1,12 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, UserChangeForm
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, UserChangeForm, UserCreationForm
 from reservation.forms import StyleFormMixin
+
 from .models import CustomsUser
 
 
 class CustomUserCreationForm(StyleFormMixin, UserCreationForm):
-    phone_number = forms.CharField(
-        max_length=15, required=False, label="Номер телефона"
-    )
+    phone_number = forms.CharField(max_length=15, required=False, label="Номер телефона")
     username = forms.CharField(max_length=50, required=True, label="Имя пользователя")
     first_name = forms.CharField(max_length=30, required=True, label="ФИО")
     password1 = forms.CharField(label="Пароль", widget=forms.PasswordInput)
@@ -28,7 +26,6 @@ class CustomUserCreationForm(StyleFormMixin, UserCreationForm):
             "is_active",
             "token",
         )  # Добавьте недостающие поля для исключения
-
 
     def __init__(self, *args, **kwargs):
         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
@@ -77,31 +74,38 @@ class CustomUserCreationForm(StyleFormMixin, UserCreationForm):
         return phone_number
 
 
-
-
-
 class CustomLoginForm(StyleFormMixin, AuthenticationForm):
-    username = forms.CharField(label='Логин', max_length=150, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите логин'}))
-    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Введите пароль'}))
+    username = forms.CharField(
+        label="Логин",
+        max_length=150,
+        widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Введите логин"}),
+    )
+    password = forms.CharField(
+        label="Пароль", widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Введите пароль"})
+    )
 
 
 class CustomChangeForm(StyleFormMixin, PasswordChangeForm):
-    old_password = forms.CharField(label='Старый пароль', widget=forms.PasswordInput(
-        attrs={'class': 'form-control', 'placeholder': 'Введите старый пароль'}))
-    new_password1 = forms.CharField(label='Новый пароль', widget=forms.PasswordInput(
-        attrs={'class': 'form-control', 'placeholder': 'Введите новый пароль'}))
-    new_password2 = forms.CharField(label='Повторите новый пароль', widget=forms.PasswordInput(
-        attrs={'class': 'form-control', 'placeholder': 'Повторите новый пароль'}))
-
+    old_password = forms.CharField(
+        label="Старый пароль",
+        widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Введите старый пароль"}),
+    )
+    new_password1 = forms.CharField(
+        label="Новый пароль",
+        widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Введите новый пароль"}),
+    )
+    new_password2 = forms.CharField(
+        label="Повторите новый пароль",
+        widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Повторите новый пароль"}),
+    )
 
 
 class CustomUserUpdateForm(StyleFormMixin, UserChangeForm):
     class Meta:
         model = CustomsUser
-        fields = ('email', 'username', 'phone_number', 'avatar', 'country')
+        fields = ("email", "username", "phone_number", "avatar", "country")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Убираем поля пароля и связанные с ними сообщения
-        self.fields.pop('password')  # Убедитесь что поле 'password' убрано
-
+        self.fields.pop("password")  # Убедитесь что поле 'password' убрано

@@ -1,24 +1,22 @@
 import secrets
 import string
 
-from django.contrib.auth.views import LoginView
-
 from config.settings import EMAIL_HOST_USER
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
-
 from reservation.models import Reservation
-from .forms import CustomUserCreationForm, CustomLoginForm, CustomChangeForm, CustomUserUpdateForm
+
+from .forms import CustomChangeForm, CustomLoginForm, CustomUserCreationForm, CustomUserUpdateForm
 from .models import CustomsUser
 
 
@@ -45,7 +43,7 @@ class RegisterView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['is_registration'] = True  # Указываем, что это регистрация
+        context["is_registration"] = True  # Указываем, что это регистрация
         return context
 
 
@@ -53,7 +51,8 @@ def email_verification(request, token):
     user = get_object_or_404(CustomsUser, token=token)
     user.is_active = True
     user.save()
-    return HttpResponse("подтвержден")
+    return redirect("user:login")
+
 
 class UserUpdateView(UpdateView):
     model = CustomsUser
@@ -63,8 +62,9 @@ class UserUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['is_registration'] = False  # Указываем, что это редактирование
+        context["is_registration"] = False  # Указываем, что это редактирование
         return context
+
 
 class LoginCustomsView(LoginView):
     template_name = "user/login.html"
@@ -89,7 +89,9 @@ class UserDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.object  # Получаем текущего пользователя
-        context['reservations'] = Reservation.objects.filter(user=user)  # Получаем бронирования для этого пользователя
+        context["reservations"] = Reservation.objects.filter(user=user)  # Получаем бронирования для этого пользователя
+        context["is_manager"] = user.groups.filter(name="manager").exists()  # Проверка группы
+
         return context
 
 
@@ -114,7 +116,7 @@ def generate_random_password(length: int = 12) -> str:
     """Генерирует случайный пароль заданной длины."""
     # Увеличена длина пароля до 12 символов для большей безопасности.
     alphabet = string.ascii_letters + string.digits + string.punctuation
-    return ''.join(secrets.choice(alphabet) for _ in range(length))
+    return "".join(secrets.choice(alphabet) for _ in range(length))
 
 
 class PasswordResetView(View):
@@ -165,7 +167,3 @@ class ChangePasswordView(LoginRequiredMixin, View):
 
         messages.error(request, "Пожалуйста, исправьте ошибки в форме.")
         return render(request, "user/change_password.html", {"form": form})
-
-
-
-

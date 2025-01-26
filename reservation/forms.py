@@ -3,6 +3,7 @@ from django.forms import BooleanField, DateTimeInput
 
 from .models import Reservation
 
+
 class StyleFormMixin:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -12,13 +13,14 @@ class StyleFormMixin:
             else:
                 fild.widget.attrs["class"] = "form-control"
 
+
 class ReservationForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Reservation
-        fields = ['table', 'date', 'time', 'guests', 'name', 'comments']
+        fields = ["table", "date", "time", "guests", "name", "comments"]
         widgets = {
-            'date': DateTimeInput(attrs={'type': 'date'}),
-            'time': DateTimeInput(attrs={'type': 'time'}),
+            "date": DateTimeInput(attrs={"type": "date"}),
+            "time": DateTimeInput(attrs={"type": "time"}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -35,5 +37,12 @@ class ReservationForm(StyleFormMixin, forms.ModelForm):
             {
                 "class": "form-control",  # Добавление CSS-класса для стилизации поля
                 "placeholder": "Введите количество гостей",
+            }
+        )
+
+        self.fields["table"].label = "Список столов. Выберите свободный"  # Изменяем название поля
+        self.fields["table"].widget.attrs.update(
+            {
+                "class": "form-control",  # Добавление CSS-класса для стилизации поля
             }
         )

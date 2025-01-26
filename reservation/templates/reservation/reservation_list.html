@@ -32,7 +32,7 @@
           <td>{{ reservation.table.get_status_display}}</td>
           <td>{{ reservation.get_status_display}}</td>
             <td>
-                <a href="{% url 'reservation:reservation_detail' reservation.id %}" class="btn btn-primary">подробнее</a>
+                <a href="{% url 'reservation:reservation_detail' reservation.id %}" class="btn btn-primary ">подробнее</a>
                 {% if user == reservation.user or user.is_staff or can_view_all %}
                 <form action="{% url 'reservation:reservation_cancel' reservation.id %}" method="post" style="display:inline;">
                     {% csrf_token %}

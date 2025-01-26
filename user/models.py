@@ -3,6 +3,8 @@ from django.db import models
 
 
 class CustomsUser(AbstractUser):
+    """Модель пользователя"""
+
     username = models.CharField(max_length=50, verbose_name="Количество гостей")
     email = models.EmailField(unique=True, verbose_name="Электронная почта")
     phone_number = models.CharField(max_length=15, blank=True, null=True, verbose_name="Номер телефона")
@@ -29,7 +31,7 @@ class CustomsUser(AbstractUser):
         permissions = [
             ("can_manage_user", "can manage user"),
             ("can_block_user", "can block user"),
-            ('can_view_reservations', 'Can view reservations')
+            ("can_view_reservations", "Can view reservations"),
         ]
 
     def __str__(self):

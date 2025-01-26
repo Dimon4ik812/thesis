@@ -3,8 +3,8 @@
 {% block content %}
 <div class="custom-user-list-bg">
     <div class="row">
-        <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
+        <div class="col-md mt-5">
+            <div class="card mt-5" style="width: 18rem;">
           <img src="{{ user_profile.avatar.url }}" class="card-img-top" alt="avatar">
           <div class="card-body" style="background-color: rgba(0, 0, 0, 0.7); color: white;">
             <h5 class="card-title">Детали пользователя: {{ user_profile.username }}</h5>
@@ -54,11 +54,11 @@
           <td>{{ reservation.table.get_status_display}}</td>
           <td>{{ reservation.get_status_display}}</td>
             <td>
-                <a href="{% url 'reservation:reservation_detail' reservation.id %}" class="btn btn-primary">подробнее</a>
+                <a href="{% url 'reservation:reservation_detail' reservation.id %}" class="btn btn-primary w-100 me-1 mb-1">Подробнее</a>
                 {% if user == reservation.user or user.is_staff%}
                 <form action="{% url 'reservation:reservation_cancel' reservation.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-dark">Отменить бронь</button>
+                    <button type="submit" class="btn btn-dark w-100 me-1">Отменить бронь</button>
                 </form>
                 {% endif %}
             </td>
@@ -70,7 +70,9 @@
     <p>У Вас нет активных бронирований.</p>
     {% endif %}
     <div class="d-flex justify-content-end mt-5">
+        {% if not is_manager %}
         <a href="{% url 'reservation:reservation_table' %}" class="btn btn-warning">Создать бронирование</a>
+        {% endif %}
     </div>
  </div>
 </main>
