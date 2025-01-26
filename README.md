@@ -23,16 +23,7 @@ poetry install
 2. Просмотр списка пользователя и блокировка их
 ```
 
-4. Тесты:
-
-```
-python manage.py test1
-coverage run --source='.' manage.py test
-coverage report
-тестами покрыто 80%
-```
-
-5. Запуск проекта локально: 
+4. Запуск проекта локально: 
 
 ```
 python manage.py runserver
