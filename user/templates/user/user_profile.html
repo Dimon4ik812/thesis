@@ -1,11 +1,16 @@
 {% extends 'reservation/home.html' %}
 {% load my_tags %}
+{% load static %}
 {% block content %}
 <div class="custom-user-list-bg">
     <div class="row">
         <div class="col-md mt-5">
             <div class="card mt-5" style="width: 18rem;">
-          <img src="{{ user_profile.avatar.url }}" class="card-img-top" alt="avatar">
+                {% if user_profile.avatar %}
+                    <img src="{{ user_profile.avatar.url }}" class="card-img-top" alt="avatar">
+                {% else %}
+                    <img src="{% static 'images/7309681.jpg' %}" alt="default avatar">
+                {% endif %}
           <div class="card-body" style="background-color: rgba(0, 0, 0, 0.7); color: white;">
             <h5 class="card-title">Детали пользователя: {{ user_profile.username }}</h5>
             <p class="card-text"><ul>
