@@ -104,4 +104,4 @@ jobs:
           SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
           ROOT_PASSWORD: ${{ secrets.ROOT_PASSWORD }}
         run: |
-          sshpass -p "${{ secrets.ROOT_PASSWORD }}" ssh -o StrictHostKeyChecking=no root@85.92.111.109 "cd /root/thesis && git pull && docker-compose up -d --build"
+          sshpass -p "${{ secrets.ROOT_PASSWORD }}" ssh -o StrictHostKeyChecking=no root@85.92.111.109 "cd /root/thesis && git pull && docker-compose down --remove-orphans && docker-compose up -d --build"
