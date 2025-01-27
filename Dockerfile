@@ -8,3 +8,4 @@ COPY . .
 RUN poetry install --only main
 RUN poetry remove python-dotenv
 RUN poetry add python-dotenv
+RUN python manage.py collectstatic --noinput
