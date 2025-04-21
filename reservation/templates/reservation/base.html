@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ru" prefix="og: http://ogp.me/ns#">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow"><link rel="canonical" href="https://bootstrap5.ru/examples/starter-template" />
+<meta name="description" content="Ничего, кроме основ: скомпилированный CSS и JavaScript.">
+<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors, Alexey Golyagin">
+<meta name="docsearch:language" content="ru">
+<meta name="docsearch:version" content="5.0">
+<title>Бесплатный стартовый bootstrap 5 шаблон</title>
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+<link rel="stylesheet" href="https://bootstrap5.ru/css/docs.css">
+<!-- Favicons -->
+<link rel="apple-touch-icon" href="https://bootstrap5.ru/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="https://bootstrap5.ru/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="https://bootstrap5.ru/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="https://bootstrap5.ru/img/favicons/manifest.json">
+<link rel="mask-icon" href="https://bootstrap5.ru/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+<link rel="icon" href="https://bootstrap5.ru/img/favicons/favicon.ico">
+<meta name="theme-color" content="#7952b3">
+<!-- Facebook -->
+<meta property="og:url" content="https://bootstrap5.ru/examples/starter-template">
+<meta property="og:title" content="Бесплатный стартовый bootstrap 5 шаблон">
+<meta property="og:description" content="Ничего, кроме основ: скомпилированный CSS и JavaScript.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://bootstrap5.ru/img/examples/starter-template.png">
+<meta property="og:image:type" content="image/jpg">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="500">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    .custom-input {
+        width: 500px;
+    }
+    .custom-margin {
+        margin-top: 80px;
+    }
+    .clear-button-container {
+          display: flex;
+          justify-content: flex-end; /* Выравнивание по правому краю */
+    }
+    .custom-bg {
+            background-image: url('/media/images/istockphoto-1018141890-1024x1024.jpg');
+            background-size: cover; /* Заполнение фона */
+            background-position: center; /* Центрирование */
+            height: 100vh; /* Высота 100% от высоты вьюпорта */
+            display: flex; /* Свойство flex для размещения содержимого */
+            align-items: center; /* Центрирование по вертикали */
+            justify-content: center; /* Центрирование по горизонтали */
+            color: white; /* Установите цвет текста */
+    }
+    .full-screen-bg {
+            background-image: url('/media/images/istockphoto-1361899698-1024x1024.jpg');
+            background-size: cover; /* Заполнение фона */
+            background-position: center; /* Центрирование */
+            height: 100vh; /* Высота 100% от высоты вьюпорта */
+            display: flex; /* Свойство flex для размещения содержимого */
+            align-items: center; /* Центрирование по вертикали */
+            justify-content: center; /* Центрирование по горизонтали */
+            color: white; /* Установите цвет текста */
+        }
+    .custom-input {
+    width: 38%; /* Устанавливаем ширину в 50% */
+    }
+    .full-screen {
+            width: 100%;
+            height: 100vh; /* Высота на весь экран */
+            display: flex;
+            flex-direction: column;
+
+        }
+     .custom-reservation-bg {
+            background-image: url('/media/images/1a718031d8b211efbe74fe1b45914307.webp');
+            background-size: cover; /* Заполнение фона */
+            background-position: center; /* Центрирование */
+            height: 100vh; /* Высота 100% от высоты вьюпорта */
+            display: flex; /* Свойство flex для размещения содержимого */
+            align-items: center; /* Центрирование по вертикали */
+            justify-content: center; /* Центрирование по горизонтали */
+            color: white; /* Установите цвет текста */
+        }
+     .custom-reservation-list-bg {
+        background-image: url('/media/images/istockphoto-1137778399-1024x1024.jpg');
+        background-size: cover; /* Заполнение фона */
+        background-position: center; /* Центрирование */
+        height: 100vh; /* Высота 100% от высоты вьюпорта */
+        display: flex; /* Свойство flex для размещения содержимого */
+        align-items: center; /* Центрирование по вертикали */
+        justify-content: center; /* Центрирование по горизонтали */
+        color: white; /* Установите цвет текста */
+    }
+    .custom-reservation-detail-bg {
+        background-image: url('/media/images/istockphoto-1138158486-2048x2048.jpg');
+        background-size: cover; /* Заполнение фона */
+        background-position: center; /* Центрирование */
+        height: 100vh; /* Высота 100% от высоты вьюпорта */
+        display: flex; /* Свойство flex для размещения содержимого */
+        align-items: center; /* Центрирование по вертикали */
+        justify-content: center; /* Центрирование по горизонтали */
+        color: white; /* Установите цвет текста */
+    }
+
+    .custom-user-bg {
+        background-image: url('/media/images/istockphoto-1215507831-1024x1024.jpg');
+        background-size: cover; /* Заполнение фона */
+        background-position: center; /* Центрирование */
+        height: 100vh; /* Высота 100% от высоты вьюпорта */
+        display: flex; /* Свойство flex для размещения содержимого */
+        align-items: center; /* Центрирование по вертикали */
+        justify-content: center; /* Центрирование по горизонтали */
+        color: white; /* Установите цвет текста */
+    }
+
+    .custom-transparent-card {
+        background-color: rgba(0, 0, 0, 0.7) !important; /* Полупрозрачный черный фон */
+        color: white !important; /* Белый цвет текста */
+        border: none !important; /* Убираем границу */
+        border-radius: 0.5rem !important; /* Закругленные углы (по желанию) */
+    }
+    .custom-user-list-bg {
+    background-image: url('/media/images/istockphoto-1138158486-2048x2048.jpg');
+    background-size: cover; /* Заполнение фона */
+    background-position: center; /* Центрирование */
+    height: 100vh; /* Высота 100% от высоты вьюпорта */
+    display: flex; /* Свойство flex для размещения содержимого */
+    align-items: center; /* Центрирование по вертикали */
+    justify-content: center; /* Центрирование по горизонтали */
+    color: white; /* Установите цвет текста */
+    }
+
+    .user-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрирование заголовка */
+    width: 100%; /* Ширина контейнера */
+    }
+
+    .user-list-title {
+        margin-bottom: 20px;
+        text-align: center; /* Заголовок по центру */
+    }
+
+    .table-transparent {
+        background-color: rgba(255, 255, 255, 0.5); /* Полупрозрачный белый фон */
+        color: black; /* Цвет текста в таблице */
+    }
+
+    .table-transparent-user {
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон */
+    color: white; /* Цвет текста в таблице */
+}
+
+    .table-wrapper {
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        border-radius: 10px;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    /* Стили для кнопок */
+    .btn-group .btn {
+        margin-right: 5px; /* Отступ между кнопками */
+    }
+
+    .btn-danger {
+        background-color: #dc3545; /* Красный цвет для кнопки "Заблокировать" */
+        border-color: #dc3545;
+    }
+
+    .btn-success {
+        background-color: #198754; /* Зеленый цвет для кнопки "Разблокировать" */
+        border-color: #198754;
+    }
+
+    .btn-primary {
+        background-color: #0d6efd; /* Синий цвет для кнопки "Посмотреть" */
+        border-color: #0d6efd;
+    }
+
+    .btn-primary:hover, .btn-success:hover, .btn-danger:hover {
+        opacity: 0.8; /* Изменение прозрачности при наведении */
+    }
+    .table-transparent th, .table-transparent td {
+        color: black; /* Черный цвет текста для заголовков и ячеек */
+    }
+    .text-overlay {
+        background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон для текста */
+        color: white; /* Цвет текста */
+        padding: 20px; /* Отступы для текста */
+        border-radius: 10px; /* Закругленные углы */
+    }
+
+    .custom-accordion .accordion-item {
+        background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон для аккордеона */
+        border: none; /* Убираем границы */
+        margin-bottom: 10px; /* Отступ между элементами аккордеона */
+    }
+
+    .custom-accordion .accordion-button {
+        color: white; /* Цвет текста кнопки аккордеона */
+        background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон для кнопки */
+    }
+
+    .custom-accordion .accordion-button:not(.collapsed) {
+        background-color: rgba(0, 0, 0, 0.9); /* Более темный фон для открытой кнопки */
+    }
+
+    .custom-accordion .accordion-body {
+        color: white; /* Цвет текста в теле аккордеона */
+    }
+
+    .container {
+        margin-bottom: 50px; /* Отступ снизу */
+    }
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet"></head>
+<body>
+{% include 'reservation/includes/inc_menu.html'%}
+<main style="flex: 1;">
+{% block content %}
+{% endblock %}
+ </main>
+</main><!-- /.container --><script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-179173139-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-179173139-1');
+</script>
+{% include 'reservation/includes/inc_footer.html'%}
+<!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){ m[i]=m[i]||function(){ (m[i].a=m[i].a||[]).push(arguments) }; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(67718821, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/67718821" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+<script type="text/javascript" src="/static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

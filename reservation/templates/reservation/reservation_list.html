@@ -1,0 +1,56 @@
+{% extends 'reservation/base.html'%}
+{% block content %}
+{% if can_view_all %}
+<div class="custom-reservation-list-bg">
+    <main class="container ">
+
+      <div class="starter-template text-center py-5 px-3 mt-5">
+
+
+        <h1>Список бронирований</h1>
+        <table class="table-transparent mt-5">
+      <thead>
+        <tr>
+          <th scope="col">Дата</th>
+          <th scope="col">Время бронирования</th>
+          <th scope="col">Гость</th>
+          <th scope="col">Количество гостей</th>
+          <th scope="col">Номер стола</th>
+          <th scope="col">Статус</th>
+          <th scope="col">Статус</th>
+          <th scope="col">Управление</th>
+        </tr>
+      </thead>
+            {% for reservation in reservations %}
+      <tbody>
+        <tr>
+          <th scope="row">{{ reservation.date|date:"d.m.Y" }} </th>
+          <th scope="row">{{ reservation.time|date:"H:i" }}</th>
+          <td>{{ reservation.name }}</td>
+          <td>{{ reservation.guests}}</td>
+          <td>{{ reservation.table.number}}</td>
+          <td>{{ reservation.table.get_status_display}}</td>
+          <td>{{ reservation.get_status_display}}</td>
+            <td>
+                <a href="{% url 'reservation:reservation_detail' reservation.id %}" class="btn btn-primary ">подробнее</a>
+                {% if user == reservation.user or user.is_staff or can_view_all %}
+                <form action="{% url 'reservation:reservation_cancel' reservation.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-dark">Отменить бронь</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+      </tbody>
+            {% endfor %}
+    </table>
+
+    <div class="d-flex justify-content-end mt-5">
+        <a href="{% url 'reservation:reservation_table' %}" class="btn btn-warning">Создать бронирование</a>
+    </div>
+ </div>
+{% else %}
+    <p>У Вас нет прав для просмотра списка бронирований.</p>
+{% endif %}
+</main>
+{% endblock %}

@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <div class="container-fluid ">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto mb-2 mb-md-0">
+        <li class="nav-item active">
+          <a class="nav-link" aria-current="page" href="{% url 'reservation:home' %}">Главная</a>
+        </li>
+        <li class="nav-item dropdown">
+
+          <a class="nav-link dropdown-toggle " href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">Вкусные Моменты</a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown01">
+            <li><a class="dropdown-item" href="{% url 'reservation:info' %}">О ресторане</a></li>
+            <li><a class="dropdown-item" href="{% url 'reservation:reservation_table' %}">Забронировать столик</a></li>
+            {% if user.is_authenticated and user.is_staff or perms.user.can_manage_user and user.is_blocked == False %}
+              <li><a class="dropdown-item" href="{% url 'reservation:reservation_list' %}">Управление бронированием</a></li>
+            <li><a class="dropdown-item" href="{% url 'user:user_list' %}">Пользователи</a></li>
+            {% endif %}
+          </ul>
+        </li>
+      </ul>
+      <ul class="navbar-nav mb-2 mb-md-0">
+  {% if user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'user:user_profile' user.id %}">Личный кабинет</a>
+    </li>
+    <li class="nav-item">
+      <form method="post" action="{% url 'user:logout' %}" class="d-inline">
+        {% csrf_token %}
+        <button type="submit" class="nav-link btn btn-link">Выход</button>
+      </form>
+    </li>
+  {% else %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'user:login' %}">Вход</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'user:register' %}">Регистрация</a>
+    </li>
+  {% endif %}
+</ul>
+    </div>
+  </div>
+</nav>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <!-- Остальной контент страницы -->
+</div>

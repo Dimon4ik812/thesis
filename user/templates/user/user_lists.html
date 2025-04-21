@@ -1,0 +1,58 @@
+{% extends 'reservation/home.html' %}
+{% load my_tags %}
+{% block title %}Получатель рассылки{% endblock %}
+{% block content %}
+<div class="custom-user-list-bg">
+    <div class="user-list-container">
+        <h2 class="user-list-title">Список пользователей</h2>
+        <div class="user-list-container table-wrapper ">
+            <table class="table custom-margin table-transparent-user">
+                <thead>
+                    <tr>
+                        <th>Аватар</th>
+                        <th>Ф. И. О.</th>
+                        <th>Nickname</th>
+                        <th>Телефон</th>
+                        <th>Email</th>
+                        <th>Страна</th>
+                        <th>Статус</th>
+                        <th>Управление</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users_list %}
+                        {% if perms.user.can_manage_user and not user.is_superuser %}
+                        <tr>
+                            <td><img src="{{ user.avatar | media_filter }}" class="card-img-top" alt="avatar"
+                                     style="max-width: 150px; max-height: 150px; width: auto; height: auto;"></td>
+                            <td>{{ user.first_name }} {{user.last_name}}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.phone_number }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.country }}</td>
+                            <td>
+                                {% if user.is_blocked %}
+                                    Заблокировано
+                                {% else %}
+                                    Разблокировано
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="User Actions">
+                                    {% if user.is_blocked %}
+                                        <a href="{% url 'user:user_block' user.id %}" class="btn btn-success">Разблокировать</a>
+                                    {% else %}
+                                        <a href="{% url 'user:user_block' user.id %}" class="btn btn-danger">Заблокировать</a>
+                                    {% endif %}
+                                    <a href="{% url 'user:user_profile' user.id %}" class="btn btn-primary">Посмотреть</a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

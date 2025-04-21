@@ -1,0 +1,50 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+<!--    <title>Book a Table</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div class="container">-->
+<!--        <h1>Book a Table</h1>-->
+<!--        <form method="post">-->
+<!--            {% csrf_token %}-->
+<!--            {{ form.as_p }}-->
+<!--            <button type="submit" class="btn btn-primary">Reserve</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</body>-->
+<!--</html>-->
+{% extends 'newapp/base.html'%}
+{% load my_tags %}
+{% block content %}
+<div class="container mt-5">
+        <h2 class="mb-2 custom-margin"> Добавить получателя</h2>
+</div>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="container mt-3 pt-3">
+    <div class="mb-3">
+      <label for="{{ form.email.id_for_label }}" class="form-label">Адрес электронной почты</label>
+      {{ form.name|add_class:"form-control custom-input" }}
+      <div id="emailHelp" class="form-text">Мы никогда никому не передадим Вашу электронную почту.</div>
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.full_name.id_for_label }}" class="form-label">ФИО</label>
+      {{form.date|add_class:"form-control custom-input" }}
+    </div>
+    <div class="mb-3">
+      <label for="{{.id_for_label }}" class="form-label">Комментарии</label>
+      {{ form.time|add_class:"form-control custom-input" }}
+    </div>
+    <div class="mb-3">
+      <label for="{{.id_for_label }}" class="form-label">Комментарии</label>
+      {{ form.guests|add_class:"form-control custom-input" }}
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{% url 'reservation:mailingrecipient_list' %}" class="btn btn-danger">Отмена</a>
+  </div>
+</form>
+{% endblock %}

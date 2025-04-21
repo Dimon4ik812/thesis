@@ -1,0 +1,15 @@
+{% extends 'reservation/home.html'%}
+{% block content %}
+<div class="custom-user-bg">
+    <div class="custom-input">
+        <div class="container mt-3 ">
+                <h1 class="mb-2 custom-margin">{% if is_registration %}Регистрация{% else %}Редактирование{% endif %}</h1>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary" style="margin-bottom: 38px;">{% if is_registration %}Регистрация{% else %}Сохранить{% endif %}</button>
+                </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

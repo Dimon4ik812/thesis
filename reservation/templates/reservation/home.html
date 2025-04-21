@@ -1,0 +1,59 @@
+{% extends 'reservation/base.html'%}
+{% block content %}
+<div class="custom-bg">
+  <main class="container">
+    <div class="starter-template text-center py-5 px-3 mt-5">
+      <h1>Добро пожаловать в ресторан "Вкусные Моменты"!</h1>
+      <p class="lead">Мы предлагаем уникальное сочетание традиционной и современной кухни, где каждый гость найдет что-то по своему вкусу. Наша атмосфера наполнена теплом и уютом, а профессиональные повара готовят блюда из свежих и качественных ингредиентов.</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div>
+          <h2>Перечень предоставляемых услуг:</h2>
+          <ul>
+            <li>Обслуживание в ресторане</li>
+            <li>Доставка блюд на дом</li>
+            <li>Организация банкетов и мероприятий</li>
+            <li>Кулинарные мастер-классы</li>
+            <li>Специальные предложения для корпоративных клиентов</li>
+          </ul>
+
+          <h2>Контактная информация:</h2>
+          <ul>
+            <li>Адрес: пр-т. Невский, 123, г. Санкт-Петербург</li>
+            <li>Телефон: +7 (123) 456-78-90</li>
+            <li>Email: info@vkusnymomenty.ru</li>
+            <li>Часы работы: Пн-Вс: 10:00 - 23:00</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-4 box-shadow" style="background-color: rgba(0, 0, 0, 0.7); color: white;">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Свяжитесь с нами</h4>
+          </div>
+          <div class="card-body">
+            <form method="post" action="" class="form-floating">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="name">Имя</label>
+                <input type="text" name="name" class="form-control" id="name" placeholder="Ваше имя" required style="background-color: rgba(255, 255, 255, 0.5); color: black;"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="phone" >Телефон</label>
+                <input type="text" name="phone" class="form-control" id="phone" placeholder="Контактный телефон" required style="background-color: rgba(255, 255, 255, 0.5); color: black;"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="message">Сообщение</label>
+                <textarea type="text" name="message" class="form-control" id="message" placeholder="Ваше сообщение" required style="background-color: rgba(255, 255, 255, 0.5); color: black;"></textarea></textarea>
+              </div>
+              <button type="submit" class="btn btn-lg btn-block btn-outline-light">Отправить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}
